@@ -1,1 +1,5 @@
-theme: jekyll-theme-minimal
+title: Mohsen Ghofrani-Jahromi
+description: Postdoctoral Research Fellow in deep learning and medical image analysis at Monash University.
+url: https://mghofrani.github.io
+exclude:
+  - README.md

@@ -1,0 +1,323 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Mohsen Ghofrani-Jahromi</title>
+  <meta name="description" content="Postdoctoral Research Fellow in deep learning and medical image analysis at Monash University, Melbourne.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #fafaf9;
+      --surface: #ffffff;
+      --text: #1c1917;
+      --muted: #57534e;
+      --faint: #a8a29e;
+      --line: #e7e5e4;
+      --accent: #0f766e;
+      --accent-soft: #ccfbf1;
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg: #0c0a09;
+        --surface: #1c1917;
+        --text: #f5f5f4;
+        --muted: #a8a29e;
+        --faint: #78716c;
+        --line: #292524;
+        --accent: #2dd4bf;
+        --accent-soft: #134e4a;
+      }
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--text);
+      font: 16px/1.65 "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
+      -webkit-font-smoothing: antialiased;
+    }
+    a { color: var(--accent); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    .wrap { max-width: 820px; margin: 0 auto; padding: 0 20px; }
+
+    /* Nav */
+    nav {
+      position: sticky; top: 0; z-index: 10;
+      background: color-mix(in srgb, var(--bg) 88%, transparent);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid var(--line);
+    }
+    nav .wrap { display: flex; gap: 22px; overflow-x: auto; padding-top: 12px; padding-bottom: 12px; }
+    nav a { color: var(--muted); font-size: 14px; font-weight: 500; white-space: nowrap; }
+    nav a:hover { color: var(--text); text-decoration: none; }
+
+    /* Hero */
+    header { padding: 64px 0 40px; }
+    .hero { display: flex; gap: 28px; align-items: center; }
+    .avatar {
+      flex: none; width: 96px; height: 96px; border-radius: 50%;
+      display: grid; place-items: center;
+      background: var(--accent-soft); color: var(--accent);
+      font-size: 34px; font-weight: 700; letter-spacing: -1px;
+    }
+    h1 { font-size: clamp(28px, 5vw, 38px); line-height: 1.15; margin: 0 0 6px; letter-spacing: -0.02em; }
+    .role { font-size: 18px; color: var(--muted); margin: 0; }
+    .tags { display: flex; flex-wrap: wrap; gap: 8px; margin: 22px 0 0; padding: 0; list-style: none; }
+    .tags li {
+      font-size: 13px; font-weight: 500; padding: 4px 12px; border-radius: 999px;
+      background: var(--accent-soft); color: var(--accent);
+    }
+    .links { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 22px; }
+    .btn {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 8px 14px; border: 1px solid var(--line); border-radius: 8px;
+      background: var(--surface); color: var(--text); font-size: 14px; font-weight: 500;
+    }
+    .btn:hover { border-color: var(--accent); text-decoration: none; }
+    .btn svg { width: 16px; height: 16px; fill: currentColor; }
+
+    /* Sections */
+    section { padding: 36px 0; border-top: 1px solid var(--line); scroll-margin-top: 50px; }
+    h2 {
+      font-size: 13px; text-transform: uppercase; letter-spacing: 0.12em;
+      color: var(--faint); margin: 0 0 22px; font-weight: 600;
+    }
+    h3 { font-size: 16px; margin: 0; font-weight: 600; }
+    p { margin: 0 0 12px; }
+    .muted { color: var(--muted); }
+
+    /* Timeline */
+    .timeline { list-style: none; margin: 0; padding: 0; }
+    .timeline li { display: grid; grid-template-columns: 150px 1fr; gap: 20px; padding: 12px 0; }
+    .timeline .when { color: var(--faint); font-size: 14px; font-variant-numeric: tabular-nums; padding-top: 1px; }
+    .timeline .where { color: var(--muted); font-size: 15px; }
+
+    /* Cards */
+    .cards { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 14px; }
+    .card {
+      background: var(--surface); border: 1px solid var(--line); border-radius: 12px;
+      padding: 18px; display: flex; flex-direction: column; gap: 8px;
+    }
+    .card p { font-size: 14.5px; color: var(--muted); margin: 0; flex: 1; }
+    .card .more { font-size: 14px; font-weight: 500; }
+
+    /* Publications */
+    .pubgroup { margin-bottom: 22px; }
+    .pubgroup h3 { font-size: 14px; color: var(--accent); margin-bottom: 8px; }
+    .pubs { margin: 0; padding: 0; list-style: none; }
+    .pubs li { padding: 7px 0; font-size: 15px; }
+    .pubs .venue { color: var(--muted); font-style: italic; }
+    .pubs .year { color: var(--faint); font-variant-numeric: tabular-nums; }
+
+    /* Skills */
+    .skills { display: grid; grid-template-columns: repeat(auto-fill, minmax(230px, 1fr)); gap: 10px 24px; }
+    .skill { display: flex; justify-content: space-between; border-bottom: 1px dashed var(--line); padding: 6px 0; font-size: 15px; }
+    .skill span:last-child { color: var(--faint); font-size: 14px; }
+
+    .plain { margin: 0; padding-left: 18px; }
+    .plain li { margin: 6px 0; }
+
+    footer { padding: 36px 0 56px; border-top: 1px solid var(--line); color: var(--faint); font-size: 14px; }
+
+    @media (max-width: 600px) {
+      header { padding-top: 40px; }
+      .hero { flex-direction: column; align-items: flex-start; gap: 18px; }
+      .avatar { width: 72px; height: 72px; font-size: 26px; }
+      .timeline li { grid-template-columns: 1fr; gap: 2px; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <div class="wrap">
+    <a href="#about">About</a>
+    <a href="#experience">Experience</a>
+    <a href="#projects">Projects</a>
+    <a href="#publications">Publications</a>
+    <a href="#talks">Talks</a>
+    <a href="#skills">Skills</a>
+    <a href="#education">Education</a>
+  </div>
+</nav>
+
+<main class="wrap">
+
+  <header>
+    <div class="hero">
+      <div class="avatar" aria-hidden="true">MG</div>
+      <div>
+        <h1>Mohsen Ghofrani-Jahromi</h1>
+        <p class="role">Postdoctoral Research Fellow · Monash University, Melbourne</p>
+      </div>
+    </div>
+    <ul class="tags">
+      <li>Machine Learning</li>
+      <li>Deep Learning</li>
+      <li>Image Processing</li>
+      <li>Signal Processing</li>
+      <li>Neuroimaging</li>
+    </ul>
+    <div class="links">
+      <a class="btn" href="mailto:mohsen.ghofrani-jahromi@monash.edu">
+        <svg viewBox="0 0 24 24"><path d="M20 4H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2zm0 4-8 5-8-5V6l8 5 8-5z"/></svg>Email
+      </a>
+      <a class="btn" href="https://scholar.google.com/citations?user=-OBFscsAAAAJ&hl=en">
+        <svg viewBox="0 0 24 24"><path d="M12 3 1 9l11 6 9-4.9V17h2V9L12 3zm-7 9.2v4L12 20l7-3.8v-4L12 16l-7-3.8z"/></svg>Google Scholar
+      </a>
+      <a class="btn" href="https://www.linkedin.com/in/mohsen-ghofrani-jahromi-b2108965/">
+        <svg viewBox="0 0 24 24"><path d="M19 3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2zM8.3 18.3H5.7V9.8h2.6v8.5zM7 8.6a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm11.3 9.7h-2.6v-4.1c0-1 0-2.3-1.4-2.3s-1.6 1.1-1.6 2.2v4.2h-2.6V9.8h2.5v1.2c.4-.7 1.2-1.4 2.5-1.4 2.7 0 3.2 1.8 3.2 4.1v4.6z"/></svg>LinkedIn
+      </a>
+      <a class="btn" href="https://github.com/mghofrani">
+        <svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 0 0-3.2 19.5c.5.1.7-.2.7-.5v-1.7c-2.8.6-3.4-1.3-3.4-1.3-.5-1.2-1.1-1.5-1.1-1.5-.9-.6.1-.6.1-.6 1 .1 1.5 1 1.5 1 .9 1.5 2.4 1.1 2.9.8.1-.7.4-1.1.6-1.3-2.2-.3-4.6-1.1-4.6-5 0-1.1.4-2 1-2.7-.1-.3-.4-1.3.1-2.6 0 0 .8-.3 2.7 1a9.4 9.4 0 0 1 5 0c1.9-1.3 2.7-1 2.7-1 .5 1.3.2 2.3.1 2.6.6.7 1 1.6 1 2.7 0 3.9-2.4 4.7-4.6 5 .4.3.7.9.7 1.9V21c0 .3.2.6.7.5A10 10 0 0 0 12 2z"/></svg>GitHub
+      </a>
+    </div>
+  </header>
+
+  <section id="about">
+    <h2>About</h2>
+    <p>I'm a postdoctoral research fellow in deep learning at the Nellie Georgiou-Karistianis Laboratory, Monash University. My PhD at Monash developed machine learning biomarkers of Huntington's disease progression from longitudinal brain MRI.</p>
+    <p>Before that I earned a Master's in Biomedical Engineering and a Bachelor's in Electrical Engineering. I've spent more than a decade on medical image analysis, EMG/EEG signal processing and computer vision, in both research and industry settings.</p>
+  </section>
+
+  <section id="experience">
+    <h2>Experience</h2>
+    <ul class="timeline">
+      <li><span class="when">Mar 2025 – Present</span><div><h3>Postdoctoral Research Fellow (Deep Learning)</h3><div class="where">Nellie Georgiou-Karistianis Laboratory, Monash University</div></div></li>
+      <li><span class="when">Jul 2021 – Dec 2024</span><div><h3>PhD Researcher (Machine Learning)</h3><div class="where">Monash University</div></div></li>
+      <li><span class="when">Jul 2023 – Oct 2023</span><div><h3>Research Intern, Computer Vision</h3><div class="where">AGL Energy, Melbourne · object detection systems</div></div></li>
+      <li><span class="when">Aug 2018 – Dec 2020</span><div><h3>Research Engineer (Signal and Image Processing)</h3><div class="where">Shiraz University of Medical Sciences, Iran</div></div></li>
+      <li><span class="when">Apr 2016 – Feb 2018</span><div><h3>Engineer (Communications Systems)</h3><div class="where">TelC, Tehran, Iran</div></div></li>
+      <li><span class="when">Oct 2015 – Mar 2016</span><div><h3>Junior Engineer (Communications Systems)</h3><div class="where">Yekta Fanara, Tehran, Iran</div></div></li>
+    </ul>
+  </section>
+
+  <section id="projects">
+    <h2>Selected Projects</h2>
+    <div class="cards">
+      <div class="card">
+        <h3>Brain MRI in Huntington's disease</h3>
+        <p>Three studies across four longitudinal datasets: predicting ventricular enlargement, deep learning of subcortical shape, and brain-age models for clinical trial monitoring.</p>
+        <a class="more" href="https://www.sciencedirect.com/science/article/pii/S2213158224000895">Read a paper →</a>
+      </div>
+      <div class="card">
+        <h3>Object detection for drone imagery</h3>
+        <p>A PyTorch detection model for cladding defects at AGL Energy, including on-site data collection at Loy Yang power station.</p>
+        <a class="more" href="https://aprintern.org.au/case-study/agl-mgj/">Case study →</a>
+      </div>
+      <div class="card">
+        <h3>Retinal OCT-A toolbox</h3>
+        <p>An open-source image analysis toolbox for quantitative retinal optical coherence tomography angiography.</p>
+        <a class="more" href="https://www.youtube.com/watch?v=r5gkW-UddBI">Watch demo →</a>
+      </div>
+      <div class="card">
+        <h3>Nerve canal localisation in CBCT</h3>
+        <p>Software that automatically localises the inferior alveolar nerve canal in cone beam CT images.</p>
+        <a class="more" href="https://www.youtube.com/watch?v=D_9C1ZZxjvk">Watch demo →</a>
+      </div>
+      <div class="card">
+        <h3>Infrared vein viewer</h3>
+        <p>A real-time vein viewer built with a Raspberry Pi, a NoIR camera and OpenCV.</p>
+        <a class="more" href="https://www.dropbox.com/s/5kx7tc4hjhtcjij/Ghofrani-IR%20VeinFinder.jpg?dl=0">See it →</a>
+      </div>
+      <div class="card">
+        <h3>Dual-energy X-ray software</h3>
+        <p>Material discrimination and pseudo-colour assignment for dual-energy X-ray images.</p>
+        <a class="more" href="https://www.dropbox.com/s/tuyswpyt5dovtmt/DualEnergy.pdf?dl=0">Details →</a>
+      </div>
+    </div>
+  </section>
+
+  <section id="publications">
+    <h2>Publications</h2>
+    <div class="pubgroup">
+      <h3>Machine Learning</h3>
+      <ul class="pubs">
+        <li>Shape matters: Predicting Huntington's disease using progression modelling. <span class="venue">Computer Methods and Programs in Biomedicine</span> <span class="year">2026</span></li>
+        <li>Mapping regional brain aging in Huntington's disease using structural MRI and machine learning. <span class="venue">Movement Disorders</span> <span class="year">2025</span></li>
+        <li><a href="https://www.sciencedirect.com/science/article/pii/S2213158224000895">Prognostic enrichment for early-stage Huntington's disease: An explainable machine learning approach for clinical trial.</a> <span class="venue">NeuroImage: Clinical</span> <span class="year">2024</span></li>
+        <li>A machine learning-based system for detecting leishmaniasis in microscopic images. <span class="venue">BMC Infectious Diseases</span> <span class="year">2022</span></li>
+      </ul>
+    </div>
+    <div class="pubgroup">
+      <h3>Image Processing</h3>
+      <ul class="pubs">
+        <li>Assessment of macular findings by OCT angiography in patients without clinical signs of diabetic retinopathy: radiomics features for early screening. <span class="venue">BMC Ophthalmology</span> <span class="year">2022</span></li>
+        <li>An open-source image analysis toolbox for quantitative retinal optical coherence tomography angiography. <span class="venue">Journal of Biomedical Physics and Engineering</span> <span class="year">2021</span></li>
+        <li>Automatic segmentation of vertebrae in CT images using adaptive fast 3D pulse coupled neural networks. <span class="venue">Australasian Physical &amp; Engineering Sciences in Medicine</span> <span class="year">2018</span></li>
+        <li>Accuracy of software designed for automated localization of the inferior alveolar nerve canal on cone beam CT images. <span class="venue">Dentomaxillofacial Radiology</span> <span class="year">2016</span></li>
+      </ul>
+    </div>
+    <div class="pubgroup">
+      <h3>Signal Processing</h3>
+      <ul class="pubs">
+        <li>Comparison of flexion relaxation phenomenon between female yogis and matched non-athlete group. <span class="venue">BMC Sports Science, Medicine and Rehabilitation</span> <span class="year">2022</span></li>
+        <li>Cortical activities during postural recovery in response to predictable and unpredictable perturbations in healthy young and older adults: A quantitative EEG assessment. <span class="venue">Basic and Clinical Neuroscience</span> <span class="year">2021</span></li>
+        <li><a href="https://ieeexplore.ieee.org/abstract/document/8320387/">Cross comparison of motor unit potential features used in EMG signal decomposition.</a> <span class="venue">IEEE Transactions on Neural Systems and Rehabilitation Engineering</span> <span class="year">2018</span></li>
+        <li>Comparative analysis of wavelet-based feature extraction for intramuscular EMG signal decomposition. <span class="venue">Journal of Biomedical Physics and Engineering</span> <span class="year">2017</span></li>
+      </ul>
+    </div>
+    <p class="muted">Full list on <a href="https://scholar.google.com/citations?user=-OBFscsAAAAJ&hl=en">Google Scholar</a>.</p>
+  </section>
+
+  <section id="talks">
+    <h2>Talks &amp; Posters</h2>
+    <ul class="timeline">
+      <li><span class="when">Nov 2025</span><div><h3>Shape Matters: Predicting Huntington's Disease using Progression Modelling</h3><div class="where">Annual Meeting of the ISMRM ANZ Chapter</div></div></li>
+      <li><span class="when">Nov 2024</span><div><h3><a href="https://youtu.be/2mixicVqj_g">AI-Driven Improvements for Huntington's Disease Clinical Trials</a></h3><div class="where">Monash School of Psychological Sciences Showcase</div></div></li>
+      <li><span class="when">Nov 2024</span><div><h3>Prognostic Enrichment for Early-Stage Huntington's Disease using Machine Learning (poster)</h3><div class="where">OHBM Australian Chapter, Melbourne</div></div></li>
+      <li><span class="when">Aug 2023</span><div><h3>Deep Learning for Detecting Cladding Defects in Drone Images: A Data-Centric Approach</h3><div class="where">AGL Data Science and Machine Learning Tech Sessions</div></div></li>
+      <li><span class="when">May 2023</span><div><h3>Machine Learning for Huntington's Disease: Patient-specific Stratification</h3><div class="where">Calvary Health Care Bethlehem</div></div></li>
+    </ul>
+  </section>
+
+  <section id="skills">
+    <h2>Skills</h2>
+    <div class="skills">
+      <div class="skill"><span>Python</span><span>7 yrs</span></div>
+      <div class="skill"><span>MATLAB</span><span>15 yrs</span></div>
+      <div class="skill"><span>Machine learning · scikit-learn</span><span>8 yrs</span></div>
+      <div class="skill"><span>Deep learning · PyTorch</span><span>5 yrs</span></div>
+      <div class="skill"><span>Image processing</span><span>10 yrs</span></div>
+      <div class="skill"><span>Signal processing</span><span>10 yrs</span></div>
+      <div class="skill"><span>Neuroimaging · FreeSurfer, FSL</span><span>5 yrs</span></div>
+      <div class="skill"><span>Computer vision · OpenCV</span><span>4 yrs</span></div>
+      <div class="skill"><span>Bash scripting</span><span>3 yrs</span></div>
+      <div class="skill"><span>R</span><span>2 yrs</span></div>
+      <div class="skill"><span>IoT · Raspberry Pi</span><span>2 yrs</span></div>
+      <div class="skill"><span>Azure · SQL · HTML/CSS/JS</span><span></span></div>
+    </div>
+  </section>
+
+  <section id="education">
+    <h2>Education</h2>
+    <ul class="timeline">
+      <li><span class="when">2021 – 2024</span><div><h3>PhD, Monash University</h3><div class="where">Novel Biomarkers of Huntington's Disease Progression using Machine Learning</div></div></li>
+      <li><span class="when">2012 – 2015</span><div><h3>MSc Biomedical Engineering (Bioelectric), Shiraz University of Medical Sciences</h3><div class="where">GPA 3.87/4 · Thesis: <a href="https://www.dropbox.com/scl/fi/7on3rhx2z6l2p1a1cwae0/main.pdf?rlkey=96xvu4y7vaciavmv5brr49te0&e=1&st=pmkfgp44&dl=0">Electromyographic Signal Decomposition: Which Motor Unit Potential Features?</a></div></div></li>
+      <li><span class="when">2007 – 2012</span><div><h3>BSc Electrical Engineering, Shiraz University</h3><div class="where">Thesis: <a href="https://www.dropbox.com/scl/fi/zm9bi2tr60twr5ii56xqi/BSc-Thesis.pdf?rlkey=4vlb4vy69cmor9ecndj9pyg98&st=2f64j0un&dl=0">Public-key cryptography using elliptic curves (Farsi)</a></div></div></li>
+    </ul>
+  </section>
+
+  <section id="awards">
+    <h2>Awards</h2>
+    <ul class="plain">
+      <li>Best Paper Award 2024, Ageing and Neurodegeneration Program, Monash School of Psychological Sciences</li>
+      <li>Monash Graduate Scholarship (MGS) and Monash International Tuition Scholarship (MITS)</li>
+      <li>Paid industry research internship at AGL Energy through APR.Intern</li>
+      <li>Iran's National Elite Foundation Award for advanced research in engineering and image processing</li>
+      <li>Member of Exceptional Talents, School of Medicine, Shiraz</li>
+    </ul>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap">© 2026 Mohsen Ghofrani-Jahromi · Melbourne, Australia</div>
+</footer>
+
+</body>
+</html>
